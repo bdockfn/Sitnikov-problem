@@ -8,7 +8,8 @@ This program solve [Sitnikov problem](https://en.wikipedia.org/wiki/Sitnikov_pro
 - scipy
 
 ### How to use
-*initial_grid_zv*
+*initial_grid_zv:
+      *
 
   
 
