@@ -51,19 +51,24 @@ def ode_function(y, E, a, e):
 
 def sitnikov(y0, a, e, period, N, step):
     """
-    param y0: z0, v0 \\ 
-    param a: \\
-    param e: \\
+    param y0: z0, v0 
+    param a: semi-major axis
+    param e: eccentricity 
     param N: amount of periods \\
     param step: step between periods
+    return (E, y)
     """
     E = np.arange(start=0, stop=period*N, step=step)
     res = odeint(ode_function, y0, E, args=(a, e))
     return(E, res)
 
-def initial_grid_zv(start_z, stop_z, start_v, stop_v, step):
-    z0 = np.arange(start_z, stop_z, step)
-    v0 = np.arange(start_v, stop_v, step)
+def initial_grid_zv(z_start, z_stop, v_start, v_stop, step, v_dim=False):
+    """ if v_dim: v0 = v_start"""
+    z0 = np.arange(z_start, z_stop, step)
+    if v_dim or v_start==v_stop:
+        v0 = np.full_like(z0, v_start)
+    else:
+        v0 = np.arange(v_start, v_stop, step)
 
     grid_z0_v0 = [[[zi, vi] for vi in v0] for zi in z0]
 
